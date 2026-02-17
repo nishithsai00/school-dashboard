@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<h2>Edit Student</h2>
+
+<form method="post" action="/teacher/update-student">
+
+    <input type="hidden" name="id" th:value="${student.id}"/>
+
+    Name:
+    <input name="name" th:value="${student.name}"><br><br>
+
+    Phone:
+    <input name="phone" th:value="${student.phone}"><br><br>
+
+    Father Name:
+    <input name="fatherName" th:value="${student.fatherName}"><br><br>
+
+    Aadhar:
+    <input name="aadhar" th:value="${student.aadhar}"><br><br>
+
+    <button type="submit">Update</button>
+</form>
+
+<a href="/teacher/dashboard">Back</a>
+
+</body>
+</html>

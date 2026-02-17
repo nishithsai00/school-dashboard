@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<h2>Students</h2>
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Roll</th>
+        <th>Phone</th>
+        <th>Edit</th>
+        <th>Delete</th>
+        <th>Password</th>
+    </tr>
+
+    <tr th:each="s : ${students}">
+        <td th:text="${s.name}"></td>
+        <td th:text="${s.rollNo}"></td>
+        <td th:text="${s.phone}"></td>
+
+        <td>
+            <a th:href="@{'/teacher/edit-student/' + ${s.id}}">Edit</a>
+        </td>
+
+        <td>
+            <a th:href="@{'/teacher/delete-student/' + ${s.id}}"
+               onclick="return confirm('Delete this student?');">
+               Delete
+            </a>
+        </td>
+
+        <td>
+            <a th:href="@{'/teacher/change-password/' + ${s.id}}">
+                Change Password
+            </a>
+        </td>
+
+    </tr>
+</table>
+
+<br>
+<a href="/teacher/dashboard">Back</a>
+
+</body>
+</html>

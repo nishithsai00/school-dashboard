@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Student Dashboard</title>
+</head>
+<body>
+
+<h1>Student Dashboard</h1>
+
+<hr>
+
+<h2>Student Details</h2>
+
+<p><b>Name:</b> <span th:text="${student.name}"></span></p>
+<p><b>Roll No:</b> <span th:text="${student.rollNo}"></span></p>
+<p><b>Class:</b> <span th:text="${student.className}"></span></p>
+<p><b>Section:</b> <span th:text="${student.section}"></span></p>
+<p><b>Father Name:</b> <span th:text="${student.fatherName}"></span></p>
+<p><b>Phone:</b> <span th:text="${student.phone}"></span></p>
+
+<hr>
+
+<h2>Homework</h2>
+
+<div th:if="${#lists.isEmpty(homeworks)}">
+    <p>No homework assigned yet.</p>
+</div>
+
+<div th:each="hw : ${homeworks}">
+    <p><b>Date:</b> <span th:text="${hw.date}"></span></p>
+    <p><b>Subject:</b> <span th:text="${hw.subject}"></span></p>
+    <p><b>Homework:</b> <span th:text="${hw.homework}"></span></p>
+    <hr>
+</div>
+
+<br>
+<a href="/logout">Logout</a>
+
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Enter Access Code</h2>
+
+<form method="post" action="/teacher/verify-code">
+    Access Code: <input name="accessCode">
+    <button type="submit">Verify</button>
+</form>
+
+<p style="color:red" th:text="${error}"></p>
+
+<a href="/teacher/dashboard">Back</a>
+
+</body>
+</html>
