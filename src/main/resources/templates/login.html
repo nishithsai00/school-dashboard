@@ -1,12 +1,27 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>School Login</title>
-    <link rel="stylesheet" href="/css/school.css">
-</head>
 
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="/css/school.css">
+
+<!-- PWA -->
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#2563eb">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+<link rel="apple-touch-icon" sizes="192x192" href="/img/icon-192.png">
+
+<title>School Login</title>
+
+</head>
 <body>
 
+<!-- HEADER -->
 <div class="school-header">
     <div style="display:flex;align-items:center;gap:15px;">
         <img src="/img/logo.png">
@@ -17,9 +32,10 @@
     </div>
 </div>
 
+<!-- PAGE WRAPPER (YOU WERE MISSING THIS) -->
 <div class="page">
 
-    <div class="card-box" style="max-width:420px;margin:auto;">
+    <div class="card-box login-card">
         <h2>Login</h2>
 
         <form method="post" action="/login">
@@ -30,13 +46,21 @@
             <label>Password</label>
             <input type="password" name="password" required>
 
-            <button type="submit" class="btn btn-primary" style="width:100%;">Login</button>
+            <!-- REMEMBER ME -->
+            <div class="remember-row">
+                <label class="remember-label">
+                    <input type="checkbox" name="remember-me">
+                    <span>Keep me logged in</span>
+                </label>
+            </div>
 
-            <p th:if="${param.error}" style="color:red;margin-top:10px;">
+            <button type="submit" class="btn btn-primary login-btn">Login</button>
+
+            <p th:if="${param.error}" class="login-error">
                 Invalid username or password
             </p>
 
-            <p th:if="${param.logout}" style="color:green;margin-top:10px;">
+            <p th:if="${param.logout}" class="login-success">
                 Logged out successfully
             </p>
 
@@ -44,6 +68,15 @@
     </div>
 
 </div>
+
+<script>
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js')
+        .then(function() {
+            console.log("SW registered");
+        });
+}
+</script>
 
 </body>
 </html>

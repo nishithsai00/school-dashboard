@@ -1,13 +1,29 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Student Dashboard</title>
-    <link rel="stylesheet" href="/css/school.css">
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="/css/school.css">
+
+<!-- PWA -->
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#2563eb">
+
+<!-- IMPORTANT (you are missing these) -->
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+<!-- ICON -->
+<link rel="apple-touch-icon" sizes="192x192" href="/img/icon-192.png">
+
 </head>
 
 <body>
 
-<!-- ===== HEADER ===== -->
+<!-- HEADER -->
 <div class="school-header">
 
     <div style="display:flex;align-items:center;gap:15px;">
@@ -19,11 +35,12 @@
         </div>
     </div>
 
-    <a href="/logout" class="logout">Logout</a>
+    <!-- FIXED LOGOUT BUTTON -->
+    <a href="/logout" class="btn btn-danger">Logout</a>
 
 </div>
 
-<!-- ===== PAGE ===== -->
+
 <div class="page">
 
     <!-- STUDENT DETAILS -->
@@ -33,34 +50,66 @@
         <table>
             <tr><th>Name</th><td th:text="${student.name}"></td></tr>
             <tr><th>Roll No</th><td th:text="${student.rollNo}"></td></tr>
-            <tr><th>Class</th><td><span th:text="${student.className}"></span>-<span th:text="${student.section}"></span></td></tr>
+            <tr>
+                <th>Class</th>
+                <td>
+                    <span th:text="${student.className}"></span> -
+                    <span th:text="${student.section}"></span>
+                </td>
+            </tr>
             <tr><th>Father Name</th><td th:text="${student.fatherName}"></td></tr>
             <tr><th>Phone</th><td th:text="${student.phone}"></td></tr>
+            <tr><th>Aadhar</th><td th:text="${student.aadhar}"></td></tr>
+            <tr><th>Date of Birth</th><td th:text="${student.dob}"></td></tr>
+            <tr><th>Address</th><td th:text="${student.address}"></td></tr>
         </table>
+
     </div>
 
-    <!-- HOMEWORK -->
+
+    <!-- HOMEWORK TABLE (REAL FIX) -->
     <div class="card-box">
+
         <h2>Homework</h2>
 
-        <div th:each="entry : ${latestHomework}">
+        <table>
 
-            <div class="homework-item">
+            <thead>
+                <tr>
+                    <th>Subject</th>
+                    <th>Homework</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
 
-                <div class="homework-subject" th:text="${entry.key}"></div>
+            <tbody>
 
-                <div th:if="${entry.value != null}">
-                    <div th:text="${entry.value.homework}"></div>
-                    <div class="homework-date" th:text="${entry.value.date}"></div>
-                </div>
+            <tr th:each="entry : ${latestHomework}">
 
-                <div th:if="${entry.value == null}">
-                    Waiting for teacher to update homework
-                </div>
+                <td th:text="${entry.key}"></td>
 
-            </div>
+                <!-- If homework exists -->
+                <td th:if="${entry.value != null}"
+                    th:text="${entry.value.homework}">
+                </td>
 
-        </div>
+                <td th:if="${entry.value == null}">
+                    Waiting for teacher update
+                </td>
+
+                <td th:if="${entry.value != null}"
+                    th:text="${entry.value.date}">
+                </td>
+
+                <td th:if="${entry.value == null}">
+                    —
+                </td>
+
+            </tr>
+
+            </tbody>
+
+        </table>
 
     </div>
 

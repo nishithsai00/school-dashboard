@@ -20,7 +20,7 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
     // used to auto detect available classes
     @Query("SELECT DISTINCT s.className, s.section FROM Student s ORDER BY s.className, s.section")
     List<Object[]> findAllClassSections();
-  
+ 
 
 
 }

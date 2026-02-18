@@ -1,14 +1,9 @@
 package com.school.dashboard.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.time.LocalDate;
 
 @Entity
 @Getter
@@ -22,6 +17,7 @@ public class Student {
     private Long id;
 
     @OneToOne
+    @JoinColumn(name = "user_id")
     private User user;
 
     private String name;
@@ -31,4 +27,8 @@ public class Student {
     private String aadhar;
     private String className;
     private String section;
+
+    private LocalDate dob;
+    private String gender;
+    private String address;
 }

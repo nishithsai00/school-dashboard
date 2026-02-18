@@ -38,10 +38,15 @@ public class TeacherController {
     }
 
     // ================= DASHBOARD =================
-    @GetMapping("/dashboard")
-    public String dashboard() {
-        return "teacher-dashboard";
-    }
+   @GetMapping("/dashboard")
+public String dashboard(Model model) {
+
+    List<Object[]> sections = studentRepo.findAllClassSections();
+    model.addAttribute("sections", sections);
+
+    return "teacher-dashboard";
+}
+
 
     // ================= VERIFY TEACHER ACCESS =================
     @GetMapping("/verify-teacher")

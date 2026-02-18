@@ -1,8 +1,28 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+
+   
+
     <title>Students</title>
-    <link rel="stylesheet" href="/css/school.css">
+
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="/css/school.css">
+
+<!-- PWA -->
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#2563eb">
+
+<!-- IMPORTANT (you are missing these) -->
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+<!-- ICON -->
+<link rel="apple-touch-icon" sizes="192x192" href="/img/icon-192.png">
+
 </head>
 
 <body>
@@ -26,8 +46,8 @@
 
 </div>
 
-<div class="page">
 
+<div class="page">
 <div class="card-box">
 
 <h2>Students List</h2>
@@ -38,44 +58,54 @@
 
 <table>
 
-    <tr>
-        <th>Roll No</th>
-        <th>Name</th>
-        <th>Class</th>
-        <th>Phone</th>
-        <th>Actions</th>
-    </tr>
+    <thead>
+        <tr>
+            <th>Roll No</th>
+            <th>Name</th>
+            <th>Class</th>
+            <th>Phone</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
 
     <tr th:each="student : ${students}">
 
-        <td th:text="${student.rollNo}"></td>
-        <td th:text="${student.name}"></td>
-        <td>
-            <span th:text="${student.className}"></span>-
+        <td data-label="Roll No" th:text="${student.rollNo}"></td>
+
+        <td data-label="Name" th:text="${student.name}"></td>
+
+        <td data-label="Class">
+            <span th:text="${student.className}"></span> -
             <span th:text="${student.section}"></span>
         </td>
-        <td th:text="${student.phone}"></td>
 
-        <td class="action-cell">
+        <td data-label="Phone" th:text="${student.phone}"></td>
 
-    <div class="action-buttons">
+        <td class="action-cell" data-label="Actions">
 
-        <a th:href="@{'/teacher/edit-student/' + ${student.id}}"
-           class="btn btn-primary">Edit</a>
+            <div class="action-buttons">
 
-        <a th:href="@{'/teacher/change-password/' + ${student.id}}"
-           class="btn btn-warning">Change Password</a>
+                <a th:href="@{'/teacher/edit-student/' + ${student.id}}"
+                   class="btn btn-primary">Edit</a>
 
-        <a th:href="@{'/teacher/delete-student/' + ${student.id}}"
-           class="btn btn-danger"
-           onclick="return confirm('Delete this student?')">Delete</a>
+                <a th:href="@{'/teacher/change-password/' + ${student.id}}"
+                   class="btn btn-warning">Change Password</a>
 
-    </div>
+                <a th:href="@{'/teacher/delete-student/' + ${student.id}}"
+                   class="btn btn-danger"
+                   onclick="return confirm('Delete this student?')">
+                   Delete
+                </a>
 
-</td>
+            </div>
 
+        </td>
 
     </tr>
+
+    </tbody>
 
 </table>
 

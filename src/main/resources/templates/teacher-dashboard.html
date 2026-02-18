@@ -1,8 +1,25 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="/css/school.css">
+
+<!-- PWA -->
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#2563eb">
+
+<!-- IMPORTANT (you are missing these) -->
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+<!-- ICON -->
+<link rel="apple-touch-icon" sizes="192x192" href="/img/icon-192.png">
+
     <title>Teacher Dashboard</title>
-    <link rel="stylesheet" href="/css/school.css">
+    
 </head>
 
 <body>
@@ -39,13 +56,16 @@
         <form method="post" action="/teacher/add-homework">
 
             <label>Class & Section</label>
-            <select name="className">
-                <option value="10-A">10-A</option>
-                <option value="10-B">10-B</option>
-                <option value="10-C">10-C</option>
-                <option value="9-A">9-A</option>
-                <option value="9-B">9-B</option>
-            </select>
+           <label>Class & Section</label>
+<select name="className" class="form-input">
+
+    <option th:each="sec : ${sections}"
+            th:value="${sec[0]} + '-' + ${sec[1]}"
+            th:text="${sec[0]} + '-' + ${sec[1]}">
+    </option>
+
+</select>
+
 
             <label>Subject</label>
             <select name="subject">
