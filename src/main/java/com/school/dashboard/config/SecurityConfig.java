@@ -24,11 +24,17 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/login").permitAll()
-                        .requestMatchers("/teacher/**").hasRole("TEACHER")
-                        .requestMatchers("/student/**").hasRole("STUDENT")
-                        .anyRequest().authenticated()
-                )
+        .requestMatchers(
+                "/login",
+                "/css/**",
+                "/js/**",
+                "/img/**"
+        ).permitAll()
+        .requestMatchers("/teacher/**").hasRole("TEACHER")
+        .requestMatchers("/student/**").hasRole("STUDENT")
+        .anyRequest().authenticated()
+)
+
                 .formLogin(login -> login
                         .loginPage("/login")
                         .successHandler(successHandler)

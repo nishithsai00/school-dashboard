@@ -2,68 +2,80 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Teacher Dashboard</title>
+    <link rel="stylesheet" href="/css/school.css">
 </head>
+
 <body>
 
-<h1>Teacher Dashboard</h1>
+<!-- HEADER -->
+<div class="school-header">
+    <div style="display:flex;align-items:center;gap:15px;">
+        <img src="/img/logo.png">
+        <div>
+            <div class="school-title">Teacher Dashboard</div>
+            <div class="school-sub">Maddi Subbarao English Medium High School</div>
+        </div>
+    </div>
 
-<hr>
+    <a href="/logout" class="btn btn-danger">Logout</a>
+</div>
 
-<!-- ================= STUDENT MANAGEMENT ================= -->
-<h2>Student Management</h2>
-<br>
-<a href="/teacher/students">View / Edit Students</a>
 
-<a href="/teacher/add-student">➕ Add Student</a>
+<div class="page">
 
-<hr>
+    <!-- STUDENT MANAGEMENT -->
+    <div class="card-box">
+        <h2>Student Management</h2>
 
-<!-- ================= HOMEWORK ================= -->
-<h2>Post Homework</h2>
+        <a href="/teacher/students" class="btn btn-primary">View / Edit Students</a>
+        <a href="/teacher/add-student" class="btn btn-success">Add New Student</a>
+    </div>
 
-<form method="post" action="/teacher/add-homework">
 
-    <label>Class & Section:</label>
-    <select name="className">
-        <option value="10-A">10-A</option>
-        <option value="10-B">10-B</option>
-        <option value="10-C">10-C</option>
-        <option value="9-A">9-A</option>
-        <option value="9-B">9-B</option>
-    </select>
+    <!-- HOMEWORK -->
+    <div class="card-box">
+        <h2>Post Homework</h2>
 
-    <br><br>
+        <form method="post" action="/teacher/add-homework">
 
-    <label>Subject:</label>
-    <select name="subject">
-        <option value="Maths">Maths</option>
-        <option value="Science">Science</option>
-        <option value="English">English</option>
-        <option value="Social">Social</option>
-    </select>
+            <label>Class & Section</label>
+            <select name="className">
+                <option value="10-A">10-A</option>
+                <option value="10-B">10-B</option>
+                <option value="10-C">10-C</option>
+                <option value="9-A">9-A</option>
+                <option value="9-B">9-B</option>
+            </select>
 
-    <br><br>
+            <label>Subject</label>
+            <select name="subject">
+                <option value="Maths">Maths</option>
+                <option value="Science">Science</option>
+                <option value="English">English</option>
+                <option value="Social">Social</option>
+            </select>
 
-    <label>Homework:</label><br>
-    <textarea name="homework" rows="6" cols="45"></textarea>
+            <label>Homework</label>
+            <textarea name="homework"></textarea>
 
-    <br><br>
+            <button type="submit" class="btn btn-primary">Submit Homework</button>
 
-    <button type="submit">Submit Homework</button>
+        </form>
 
-</form>
+        <p style="color:green;margin-top:10px;" th:if="${success}" th:text="${success}"></p>
+    </div>
 
-<hr>
 
-<!-- ================= TEACHER MANAGEMENT ================= -->
-<h2>Teacher Management</h2>
-<a href="/teacher/verify-teacher">Create New Teacher</a>
+    <!-- TEACHER MANAGEMENT -->
+    <div class="card-box">
+        <h2>Teacher Management</h2>
 
-<p style="color:red" th:text="${error}"></p>
+        <a href="/teacher/verify-teacher" class="btn btn-secondary">Create New Teacher</a>
 
-<hr>
+        <p style="color:red" th:text="${error}"></p>
+    </div>
 
-<a href="/logout">Logout</a>
+</div>
 
 </body>
 </html>

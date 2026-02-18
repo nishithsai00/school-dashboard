@@ -1,27 +1,49 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Login</title>
+    <title>School Login</title>
+    <link rel="stylesheet" href="/css/school.css">
 </head>
+
 <body>
 
-<h2>School Portal Login</h2>
-
-<form method="post" action="/login">
-    <div>
-        <label>Username:</label>
-        <input type="text" name="username"/>
+<div class="school-header">
+    <div style="display:flex;align-items:center;gap:15px;">
+        <img src="/img/logo.png">
+        <div>
+            <div class="school-title">School Portal</div>
+            <div class="school-sub">Maddi Subbarao English Medium High School</div>
+        </div>
     </div>
-    <br>
+</div>
 
-    <div>
-        <label>Password:</label>
-        <input type="password" name="password"/>
+<div class="page">
+
+    <div class="card-box" style="max-width:420px;margin:auto;">
+        <h2>Login</h2>
+
+        <form method="post" action="/login">
+
+            <label>Username</label>
+            <input type="text" name="username" required>
+
+            <label>Password</label>
+            <input type="password" name="password" required>
+
+            <button type="submit" class="btn btn-primary" style="width:100%;">Login</button>
+
+            <p th:if="${param.error}" style="color:red;margin-top:10px;">
+                Invalid username or password
+            </p>
+
+            <p th:if="${param.logout}" style="color:green;margin-top:10px;">
+                Logged out successfully
+            </p>
+
+        </form>
     </div>
-    <br>
 
-    <button type="submit">Login</button>
-</form>
+</div>
 
 </body>
 </html>

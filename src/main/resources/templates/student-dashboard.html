@@ -2,44 +2,69 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Student Dashboard</title>
+    <link rel="stylesheet" href="/css/school.css">
 </head>
+
 <body>
 
-<h1>Student Dashboard</h1>
+<!-- ===== HEADER ===== -->
+<div class="school-header">
 
-<hr>
+    <div style="display:flex;align-items:center;gap:15px;">
+        <img src="/img/logo.png">
 
-<h2>Student Details</h2>
-
-<p><b>Name:</b> <span th:text="${student.name}"></span></p>
-<p><b>Roll No:</b> <span th:text="${student.rollNo}"></span></p>
-<p><b>Class:</b> <span th:text="${student.className}"></span></p>
-<p><b>Section:</b> <span th:text="${student.section}"></span></p>
-<p><b>Father Name:</b> <span th:text="${student.fatherName}"></span></p>
-<p><b>Phone:</b> <span th:text="${student.phone}"></span></p>
-
-<hr>
-
-<h2>Homework</h2>
-
-<div th:each="entry : ${latestHomework}">
-    <p><b th:text="${entry.key}"></b></p>
-
-    <div th:if="${entry.value != null}">
-        <p><b>Date:</b> <span th:text="${entry.value.date}"></span></p>
-        <p><b>Homework:</b> <span th:text="${entry.value.homework}"></span></p>
+        <div>
+            <div class="school-title">Student Dashboard</div>
+            <div class="school-sub">Maddi Subbarao English Medium High School</div>
+        </div>
     </div>
 
-    <div th:if="${entry.value == null}">
-        <p>Waiting for teacher to update homework</p>
-    </div>
+    <a href="/logout" class="logout">Logout</a>
 
-    <hr>
 </div>
 
+<!-- ===== PAGE ===== -->
+<div class="page">
 
-<br>
-<a href="/logout">Logout</a>
+    <!-- STUDENT DETAILS -->
+    <div class="card-box">
+        <h2>Student Details</h2>
+
+        <table>
+            <tr><th>Name</th><td th:text="${student.name}"></td></tr>
+            <tr><th>Roll No</th><td th:text="${student.rollNo}"></td></tr>
+            <tr><th>Class</th><td><span th:text="${student.className}"></span>-<span th:text="${student.section}"></span></td></tr>
+            <tr><th>Father Name</th><td th:text="${student.fatherName}"></td></tr>
+            <tr><th>Phone</th><td th:text="${student.phone}"></td></tr>
+        </table>
+    </div>
+
+    <!-- HOMEWORK -->
+    <div class="card-box">
+        <h2>Homework</h2>
+
+        <div th:each="entry : ${latestHomework}">
+
+            <div class="homework-item">
+
+                <div class="homework-subject" th:text="${entry.key}"></div>
+
+                <div th:if="${entry.value != null}">
+                    <div th:text="${entry.value.homework}"></div>
+                    <div class="homework-date" th:text="${entry.value.date}"></div>
+                </div>
+
+                <div th:if="${entry.value == null}">
+                    Waiting for teacher to update homework
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
 
 </body>
 </html>
