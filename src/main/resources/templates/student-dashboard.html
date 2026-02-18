@@ -22,16 +22,21 @@
 
 <h2>Homework</h2>
 
-<div th:if="${#lists.isEmpty(homeworks)}">
-    <p>No homework assigned yet.</p>
-</div>
+<div th:each="entry : ${latestHomework}">
+    <p><b th:text="${entry.key}"></b></p>
 
-<div th:each="hw : ${homeworks}">
-    <p><b>Date:</b> <span th:text="${hw.date}"></span></p>
-    <p><b>Subject:</b> <span th:text="${hw.subject}"></span></p>
-    <p><b>Homework:</b> <span th:text="${hw.homework}"></span></p>
+    <div th:if="${entry.value != null}">
+        <p><b>Date:</b> <span th:text="${entry.value.date}"></span></p>
+        <p><b>Homework:</b> <span th:text="${entry.value.homework}"></span></p>
+    </div>
+
+    <div th:if="${entry.value == null}">
+        <p>Waiting for teacher to update homework</p>
+    </div>
+
     <hr>
 </div>
+
 
 <br>
 <a href="/logout">Logout</a>

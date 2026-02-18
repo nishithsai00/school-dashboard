@@ -6,6 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import java.util.List;
+
 
 import java.time.LocalDate;
 
@@ -143,9 +145,15 @@ public class TeacherController {
     }
     // ================= SELECT SECTION =================
 @GetMapping("/students")
-public String selectSectionPage() {
+public String selectSectionPage(Model model) {
+
+    List<Object[]> sections = studentRepo.findAllClassSections();
+
+    model.addAttribute("sections", sections);
+
     return "select-section";
 }
+
 
 // ================= VIEW STUDENTS IN SECTION =================
 @GetMapping("/view-students")

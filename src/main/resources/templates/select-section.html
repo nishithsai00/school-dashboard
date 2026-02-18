@@ -1,30 +1,38 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Select Class</title>
+</head>
 <body>
 
-<h2>Select Students</h2>
+<h2>Select Class & Section</h2>
 
-<form method="get" action="/teacher/view-students">
+<form action="/teacher/view-students" method="get">
 
-    Class:
-    <select name="className">
-        <option value="7">7</option>
+    <select name="className" required>
+        <option value="">-- Select Class --</option>
+
+        <option th:each="sec : ${sections}"
+                th:value="${sec[0]}"
+                th:text="'Class ' + ${sec[0]}">
+        </option>
+
+    </select>
+
+    <select name="section" required>
+        <option value="">-- Select Section --</option>
+
+        <option th:each="sec : ${sections}"
+                th:value="${sec[1]}"
+                th:text="'Section ' + ${sec[1]}">
+        </option>
+
     </select>
 
     <br><br>
+    <button type="submit">View Students</button>
 
-    Section:
-    <select name="section">
-        <option value="A">A</option>
-    </select>
-
-    <br><br>
-
-    <button type="submit">Show Students</button>
 </form>
-
-<br>
-<a href="/teacher/dashboard">Back</a>
 
 </body>
 </html>
