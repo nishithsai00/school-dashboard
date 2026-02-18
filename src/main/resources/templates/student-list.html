@@ -1,48 +1,86 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head><link rel="stylesheet" href="/css/school.css">
+<head>
+    <title>Students</title>
+    <link rel="stylesheet" href="/css/school.css">
 </head>
+
 <body>
 
-<h2>Students</h2>
+<!-- HEADER -->
+<div class="school-header">
 
-<table border="1">
+    <div style="display:flex;align-items:center;gap:15px;">
+        <img src="/img/logo.png">
+
+        <div>
+            <div class="school-title">Teacher Portal</div>
+            <div class="school-sub">Maddi Subbarao English Medium High School</div>
+        </div>
+    </div>
+
+    <div>
+        <a href="/teacher/dashboard" class="btn btn-secondary">Dashboard</a>
+        <a href="/logout" class="btn btn-danger">Logout</a>
+    </div>
+
+</div>
+
+<div class="page">
+
+<div class="card-box">
+
+<h2>Students List</h2>
+
+<div style="margin-bottom:18px;">
+    <a href="/teacher/dashboard" class="btn btn-secondary">← Back to Dashboard</a>
+</div>
+
+<table>
+
     <tr>
+        <th>Roll No</th>
         <th>Name</th>
-        <th>Roll</th>
+        <th>Class</th>
         <th>Phone</th>
-        <th>Edit</th>
-        <th>Delete</th>
-        <th>Password</th>
+        <th>Actions</th>
     </tr>
 
-    <tr th:each="s : ${students}">
-        <td th:text="${s.name}"></td>
-        <td th:text="${s.rollNo}"></td>
-        <td th:text="${s.phone}"></td>
+    <tr th:each="student : ${students}">
 
+        <td th:text="${student.rollNo}"></td>
+        <td th:text="${student.name}"></td>
         <td>
-            <a th:href="@{'/teacher/edit-student/' + ${s.id}}">Edit</a>
+            <span th:text="${student.className}"></span>-
+            <span th:text="${student.section}"></span>
         </td>
+        <td th:text="${student.phone}"></td>
 
-        <td>
-            <a th:href="@{'/teacher/delete-student/' + ${s.id}}"
-               onclick="return confirm('Delete this student?');">
-               Delete
-            </a>
-        </td>
+        <td class="action-cell">
 
-        <td>
-            <a th:href="@{'/teacher/change-password/' + ${s.id}}">
-                Change Password
-            </a>
-        </td>
+    <div class="action-buttons">
+
+        <a th:href="@{'/teacher/edit-student/' + ${student.id}}"
+           class="btn btn-primary">Edit</a>
+
+        <a th:href="@{'/teacher/change-password/' + ${student.id}}"
+           class="btn btn-warning">Change Password</a>
+
+        <a th:href="@{'/teacher/delete-student/' + ${student.id}}"
+           class="btn btn-danger"
+           onclick="return confirm('Delete this student?')">Delete</a>
+
+    </div>
+
+</td>
+
 
     </tr>
+
 </table>
 
-<br>
-<a href="/teacher/dashboard">Back</a>
+</div>
+</div>
 
 </body>
 </html>

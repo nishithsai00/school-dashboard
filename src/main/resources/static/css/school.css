@@ -231,3 +231,23 @@ textarea{
 form label{
     font-weight:600;
 }
+/* ===== STUDENT TABLE ACTION BUTTONS ===== */
+
+.action-cell{
+    width:260px;
+}
+
+.action-buttons{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.action-buttons .btn{
+    padding:8px 14px;
+    font-size:13px;
+    border-radius:7px;
+    min-width:80px;
+    text-align:center;
+}
