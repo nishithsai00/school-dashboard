@@ -17,7 +17,9 @@
     Father Name: <input name="fatherName"><br><br>
     Aadhar: <input name="aadhar"><br><br>
     Class: <input name="className"><br><br>
-    Section: <input name="section"><br><br>
+   <label>Section</label>
+<input name="section" id="sectionInput" class="form-input" oninput="formatSection()">
+
 
     <button type="submit">Create Student</button>
 </form>
@@ -28,6 +30,12 @@
     <a href="/teacher/students" class="btn btn-secondary">← Back to Students</a>
 </div>
 
+<script>
+function formatSection() {
+    const input = document.getElementById("sectionInput");
+    input.value = input.value.toUpperCase().replace(/\s+/g, '');
+}
+</script>
 
 </body>
 </html>
