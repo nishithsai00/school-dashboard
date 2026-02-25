@@ -8,7 +8,7 @@ The system allows administrators and teachers to securely manage school operatio
 Features
 
 - Student registration and record management
-- Attendance tracking
+- Home work tracking
 - Role-based login (Admin / Teacher)
 - Secure authentication
 - REST API backend
